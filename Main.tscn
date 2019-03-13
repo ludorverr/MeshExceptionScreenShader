@@ -47,9 +47,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.809083, 0.52888, 0 )
 mesh = SubResource( 4 )
 material/0 = null
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.680414, 0.732828, 0, -0.732828, 0.680414, 0, 2.82889, 1.86712 )
-
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.793764, 0.608226, 0, -0.608226, 0.793764, 0, 1.27391, 0 )
 
@@ -60,12 +57,28 @@ anchor_bottom = 1.0
 texture = ExtResource( 1 )
 expand = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.680414, 0.732828, 0, -0.732828, 0.680414, 0, 2.82889, 1.86712 )
 
-[node name="Viewport" type="Viewport" parent="CanvasLayer"]
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
 
-[node name="UnaffectedObject" type="MeshInstance" parent="CanvasLayer/Viewport"]
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1024, 600 )
+own_world = true
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="DirectionalLight2" type="DirectionalLight" parent="ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, 0.793764, 0.608226, 0, -0.608226, 0.793764, 0, 1.27391, 0 )
+
+[node name="UnaffectedObject" type="MeshInstance" parent="ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.898966, 0.52888, 0 )
 mesh = SubResource( 4 )
 material/0 = null
+
+[node name="Camera2" type="Camera" parent="ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, 0.680414, 0.732828, 0, -0.732828, 0.680414, 0, 2.82889, 1.86712 )
 
